@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalles del Artículo</title>
+</head>
+<body>
+<h1 th:text="${articulo.titulo}">Título del Artículo</h1>
+<p th:text="${articulo.cuerpo}">Contenido del Artículo</p>
+<p th:text="${articulo.fecha}">Fecha de Publicación</p>
+<p th:text="${articulo.autor}">Autor</p>
+
+<!-- Condición para desbloquear opciones si el usuario y el autor coinciden -->
+<div th:if="${usuario != null and usuario.id == autor.id}">
+  <!-- Opción 1 -->
+  <button type="button" onclick="realizarAccion1()">Opción 1</button>
+
+  <!-- Opción 2 -->
+  <button type="button" onclick="realizarAccion2()">Opción 2</button>
+
+  <!-- Opción 3 -->
+  <button type="button" onclick="realizarAccion3()">Opción 3</button>
+</div>
+
+<!-- Lista de Comentarios -->
+<h2>Comentarios</h2>
+<ul>
+  <li th:each="comentario : ${listaComentarios}" th:text="${comentario.texto}"></li>
+</ul>
+
+<!-- Lista de Etiquetas -->
+<h2>Etiquetas</h2>
+<ul>
+  <li th:each="etiqueta : ${listaEtiquetas}" th:text="${etiqueta.nombre}"></li>
+</ul>
+</body>
+</html>

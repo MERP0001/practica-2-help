@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Formulario de Acceso</title>
+    <link rel="stylesheet" href="loginFlow.css">
+
+    <!-- Agrega los enlaces a las hojas de estilo de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h1 class="text-center">Crear Usuario</h1>
+
+        <!-- Agrega las clases de Bootstrap al formulario action="/Crear_usuario"-->
+        <form class="mt-4"  method="post">
+            <div class="form-group">
+                <label for="Nombre">Ingrese Nombre:</label>
+                <input type="text" class="form-control" id="Nombre" name="password" required/>
+            </div>
+            <div class="form-group">
+                <label for="usuario">Ingrese Nombre Usuario:</label>
+                <input type="text" class="form-control" id="usuario" name="usuario" required/>
+            </div>
+            <div class="form-group">
+                <label for="password">Ingrese Contraseña:</label>
+                <input type="text" class="form-control" id="password" name="password" required/>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Crear Usuario</button>
+        </form>
+    </div>
+</div>
+
+<!-- Agrega los scripts de Bootstrap al final del cuerpo del documento -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

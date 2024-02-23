@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Crear Articulos</title>
+    <!-- Archivos CSS de bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<h1>Crear Nuevo Artículo</h1>
+
+<!-- Condición para verificar si el usuario existe y tiene permisos de autor -->
+<div th:if="${usuario != null && usuario.autor }">
+
+    <form action="/crear_articulo" method="post"  th:href="@{/Blog}">
+        <!-- Título del Artículo -->
+        <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" class="form-control" required/>
+        </div>
+
+        <!-- Contenido del Artículo -->
+        <div class="form-group">
+            <label for="cuerpo">Contenido:</label>
+            <textarea id="cuerpo" name="cuerpo" class="form-control" required></textarea>
+        </div>
+
+        <!-- Etiquetas del Artículo -->
+        <div class="form-group">
+            <label for="etiquetas">Etiquetas (separadas por comas):</label>
+            <input type="text" id="etiquetas" name="etiquetas" class="form-control" required/>
+        </div>
+
+        <!-- Botón para guardar el artículo -->
+        <button type="submit" class="btn btn-primary"  th:href="@{/Blog}">Guardar Artículo</button>
+    </form>
+</div>
+
+<!-- Mensaje si el usuario no tiene permisos -->
+<div th:unless="${usuario != null and usuario.autor}">
+    <p>No tienes permisos para crear artículos.</p>
+</div>
+<!-- Archivos JavaScript de bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
