@@ -18,6 +18,8 @@ using RepairMan.Services.Advertising;
 using RepairMan.Services.Common;
 using RepairMan.Services.Motoring;
 using RepairMan.Services.Repairing;
+using RepairMan.API.BasicAuthMiddleware;
+
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
@@ -96,6 +98,30 @@ builder.Services.AddSwaggerGen(c =>
             new List<string>()
         }
     });
+
+    c.AddSecurityDefinition("basic", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "basic",
+        In = ParameterLocation.Header,
+        Description = "Basic Authentication with fixed username and password"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "basic"
+                }
+            },
+            new List<string>()
+        }
+    });
 });
 
 var contentDirectory = builder.Configuration["ContentDirectory"];
@@ -107,10 +133,9 @@ if(!Directory.Exists(contentDirectory))
 
 var app = builder.Build();
 
-var scope = app.Services.CreateScope();
+app.UseMiddleware<BasicAuthMiddleware>();
 
 app.UseSwagger();
-
 app.UseSwaggerUI();
 
 app.UseAuthentication();
