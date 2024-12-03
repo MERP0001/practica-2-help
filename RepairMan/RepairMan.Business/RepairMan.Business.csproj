@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RepairMan.DataAccess\RepairMan.DataAccess.csproj" />
+    <ProjectReference Include="..\RepairMan.DataClasses\RepairMan.DataClasses.csproj" />
+    <ProjectReference Include="..\RepairMan.Services\RepairMan.Services.csproj" />
+  </ItemGroup>
+
+</Project>
